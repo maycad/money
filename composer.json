@@ -1,0 +1,38 @@
+{
+    "name": "maycad/money",
+    "description": "Money",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://www.maycad.net",
+    "keywords": [
+        "money"
+    ],
+    "authors": [
+        {
+            "name": "richejoy",
+            "email": "richejoy314@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5",
+        "guzzlehttp/guzzle": "~6.0",
+        "maycad/mfa": "^1.0@dev"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "MayCad\\Money\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+          "dev-master": "1.0-dev"
+        }
+    }
+}
