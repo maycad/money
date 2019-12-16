@@ -20,8 +20,8 @@ class MFA extends Provider
 		$this->_client = new Client([
             'base_uri' => self::BASE_URI,
             'headers' => [
-            	'Api-Key' => $this->getKey(),
-            	'Api-Secret' => $this->getSecret(),
+            	'App-Key' => $this->getKey(),
+            	'App-Secret' => $this->getSecret(),
             	'App-Locale' => 'fr',
             	'Phone-Locale' => 'fr'
             ],
