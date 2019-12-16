@@ -1,6 +1,7 @@
 <?php
 namespace MayCad\Money\Providers;
 
+use GuzzleHttp\Client;
 /**
  * 
  */
@@ -10,9 +11,21 @@ class MFA extends Provider
 
 	private $_key, $_secret;
 
+	private $_client;
+
 	function __construct(array $data)
 	{
 		$this->hydrate($data);
+
+		$this->_client = new Client([
+            'base_uri' => self::BASE_URI,
+            'headers' => [
+            	'Api-Key' => $this->getKey(),
+            	'Api-Secret' => $this->getSecret(),
+            	'App-Locale' => 'fr',
+            	'Phone-Locale' => 'fr'
+            ],
+        ]);
 	}
 
 	public function setKey(string $key)
@@ -54,41 +67,73 @@ class MFA extends Provider
 
 	public function deposit(array $params)
 	{
-		# code...
+		$req = $this->_client->post('operations/deposit', [
+            'form_params' => $params,
+        ]);
+
+        return json_decode($req->getBody());
 	}
 
 	public function transfer(array $params)
 	{
-		# code...
+		$req = $this->_client->post('operations/transfer', [
+            'form_params' => $params,
+        ]);
+
+        return json_decode($req->getBody());
 	}
 
 	public function withdrawal(array $params)
 	{
-		# code...
+		$req = $this->_client->post('operations/withdrawal', [
+            'form_params' => $params,
+        ]);
+
+        return json_decode($req->getBody());
 	}
 
 	public function balance(array $params)
 	{
-		# code...
+		$req = $this->_client->post('operations/balance', [
+            'form_params' => $params,
+        ]);
+
+        return json_decode($req->getBody());
 	}
 
 	public function register(array $params)
 	{
-		# code...
+		$req = $this->_client->post('users/register', [
+            'form_params' => $params,
+        ]);
+
+        return json_decode($req->getBody());
 	}
 
 	public function transactions(array $params)
 	{
-		# code...
+		$req = $this->_client->post('transactions/charge', [
+            'form_params' => $params,
+        ]);
+
+        return json_decode($req->getBody());
 	}
 
 	public function contact(array $params)
 	{
-		# code...
+		$req = $this->_client->post('contacts/store', [
+            'form_params' => $params,
+        ]);
+
+        return json_decode($req->getBody());
 	}
 
 	public function newsletter(array $params)
 	{
-		# code...
+		$req = $this->_client->post('newsletters/store', [
+            'form_params' => $params,
+        ]);
+
+        return json_decode($req->getBody());
 	}
 }
